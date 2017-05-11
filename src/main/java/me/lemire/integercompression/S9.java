@@ -16,7 +16,6 @@ package me.lemire.integercompression;
  */
 public final class S9 {
 
-
 	/**
 	 * Estimate size of the compressed output.
 	 * 
@@ -31,8 +30,9 @@ public final class S9 {
 	public static int estimatecompress(int[] in, int currentPos, int inlength) {
 		int tmpoutpos = 0;
 		int finalpos = currentPos + inlength;
-		outer: while (currentPos < finalpos) {
-			mainloop: for (int selector = 0; selector < 8; selector++) {
+		while (currentPos < finalpos) {
+			int count1 = 0;
+			for (int selector = 0; selector < 8; selector++) {
 
 				int compressedNum = codeNum[selector];
 				if (finalpos <= currentPos + compressedNum - 1)
@@ -40,12 +40,24 @@ public final class S9 {
 				int b = bitLength[selector];
 				int max = 1 << b;
 				int i = 0;
-				for (; i < compressedNum; i++)
-					if (Util.smallerorequalthan(max , in[currentPos + i]))
-						continue mainloop;
+				int count = 0;
+				for (; i < compressedNum; i++) {
+					if (Util.smallerorequalthan(max, in[currentPos + i])) {
+						count++;
+						break;
+					}
+				}
+				if (count == 1) {
+					continue;
+				}
 				currentPos += compressedNum;
 				++tmpoutpos;
-				continue outer;
+				count1++;
+				break;
+			}
+
+			if (count1 == 1) {
+				continue;
 			}
 			final int selector = 8;
 			if (in[currentPos] >= 1 << bitLength[selector])
@@ -76,8 +88,9 @@ public final class S9 {
 	public static int compress(int[] in, int currentPos, int inlength, int out[], int tmpoutpos) {
 		int origtmpoutpos = tmpoutpos;
 		int finalpos = currentPos + inlength;
-		outer: while (currentPos < finalpos) {
-			mainloop: for (int selector = 0; selector < 8; selector++) {
+		int count1 = 0;
+		while (currentPos < finalpos) {
+			for (int selector = 0; selector < 8; selector++) {
 				int res = 0;
 				int compressedNum = codeNum[selector];
 				if (finalpos <= currentPos + compressedNum - 1)
@@ -85,17 +98,28 @@ public final class S9 {
 				int b = bitLength[selector];
 				int max = 1 << b;
 				int i = 0;
+				int count = 0;
 				for (; i < compressedNum; i++) {
-					if (Util.smallerorequalthan(max, in[currentPos + i]))
-						continue mainloop;
+					if (Util.smallerorequalthan(max, in[currentPos + i])) {
+						count++;
+						break;
+					}
 					res = (res << b) + in[currentPos + i];
 				}
+				if (count == 1)
+					continue;
 				if (compressedNum != codeNum[selector])
 					res <<= (codeNum[selector] - compressedNum) * b;
 				res |= selector << 28;
 				out[tmpoutpos++] = res;
 				currentPos += compressedNum;
-				continue outer;
+				count1++;
+				break;
+			}
+			if (count1 == 1) {
+
+				continue;
+
 			}
 			final int selector = 8;
 			if (in[currentPos] >= 1 << bitLength[selector])

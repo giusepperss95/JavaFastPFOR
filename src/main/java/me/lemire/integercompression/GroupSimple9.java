@@ -1,9 +1,9 @@
 package me.lemire.integercompression;
 
 /**
- * Group Simple 9 is a variation on Simple 9 that preserves the same
- * compression ratios but offers higher decoding speed by regrouping
- * the 32-bit words into pairs of 64-bit words.
+ * Group Simple 9 is a variation on Simple 9 that preserves the same compression
+ * ratios but offers higher decoding speed by regrouping the 32-bit words into
+ * pairs of 64-bit words.
  * 
  * original by Kun Jiang, Yuexiang Yang and Qinghua Zheng source:
  * https://github.com/deeper2/simple
@@ -28,8 +28,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		headlessCompress(in, inpos, inlength, out, outpos);
 	}
 
-	private void encode0(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode0(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + (in[inf + i]);
 		for (int i = 0; i < 4; i++)
@@ -37,11 +36,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 28; i++)
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 28 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode1(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode1(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + in[inf + i];
 		for (int i = 0; i < 4; i++)
@@ -49,11 +47,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 14; i++)
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 28 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode2(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode2(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + in[inf + i];
 		for (int i = 0; i < 4; i++)
@@ -61,11 +58,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 9; i++)
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 28 + i];// 第二个28位是低位存储的，所以浪费的1比特在最顶端。
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode3(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode3(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + in[inf + i];
 		for (int i = 0; i < 4; i++)
@@ -73,11 +69,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 7; i++)
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 28 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode4(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode4(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + in[inf + i];
 		for (int i = 0; i < 4; i++)
@@ -85,11 +80,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 5; i++)
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 28 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode5(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode5(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + in[inf + i];
 		for (int i = 0; i < 4; i++)
@@ -97,11 +91,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 4; i++)
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 28 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode6(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode6(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + in[inf + i];
 		for (int i = 0; i < 4; i++)
@@ -109,11 +102,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 3; i++)
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 28 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode7(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode7(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + in[inf + i];
 		for (int i = 0; i < 4; i++)
@@ -121,11 +113,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 2; i++)
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 28 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode8(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode8(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 24; i++)
 			out[outf + 0] = (out[outf + 0] << 1) + in[inf + i];
 		for (int i = 0; i < 4; i++)
@@ -133,11 +124,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 1; i++)
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 28 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode9(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode9(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++)
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 		for (int i = 0; i < 2; i++)
@@ -146,11 +136,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode10(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode10(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++) {
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 
@@ -161,11 +150,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode11(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode11(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++)
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 		for (int i = 0; i < 2; i++)
@@ -174,11 +162,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode12(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode12(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++)
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 		for (int i = 0; i < 2; i++)
@@ -187,11 +174,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode13(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode13(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++)
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 		for (int i = 0; i < 2; i++)
@@ -200,11 +186,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode14(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode14(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++)
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 		for (int i = 0; i < 2; i++)
@@ -213,11 +198,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode15(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode15(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++)
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 		for (int i = 0; i < 2; i++)
@@ -226,11 +210,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode16(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode16(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++)
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 		for (int i = 0; i < 2; i++)
@@ -239,11 +222,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode17(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode17(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 12; i++)
 			out[outf + 0] = (out[outf + 0] << 2) + in[inf + i];
 		for (int i = 0; i < 2; i++)
@@ -252,11 +234,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 14 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode18(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode18(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -265,11 +246,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 9 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode19(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode19(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -278,11 +258,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 9 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode20(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode20(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -291,11 +270,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 9 + i];
 
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode21(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode21(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -303,11 +281,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 7; i++)
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 9 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode22(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode22(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -315,11 +292,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 5; i++)
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 9 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode23(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode23(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -327,11 +303,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 4; i++)
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 9 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode24(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode24(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -339,11 +314,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 3; i++)
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 9 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode25(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode25(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -351,11 +325,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 2; i++)
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 9 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode26(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode26(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 8; i++)
 			out[outf + 0] = (out[outf + 0] << 3) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -363,11 +336,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 1; i++)
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 9 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode27(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode27(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -375,11 +347,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 28; i++)
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode28(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode28(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -387,11 +358,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 14; i++)
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode29(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode29(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -399,11 +369,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 9; i++)
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode30(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode30(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -411,11 +380,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 7; i++)
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode31(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode31(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -423,11 +391,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 5; i++)
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode32(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode32(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -435,11 +402,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 4; i++)
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode33(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode33(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -447,11 +413,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 3; i++)
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode34(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode34(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -459,11 +424,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 2; i++)
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode35(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode35(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 6; i++)
 			out[outf + 0] = (out[outf + 0] << 4) + in[inf + i];
 		for (int i = 0; i < 1; i++)
@@ -471,11 +435,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 1; i++)
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 7 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode36(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode36(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -483,11 +446,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 28; i++)
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode37(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode37(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -495,11 +457,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 14; i++)
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode38(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode38(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -507,11 +468,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 9; i++)
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode39(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode39(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -519,11 +479,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 7; i++)
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode40(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode40(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -531,11 +490,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 5; i++)
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode41(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode41(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -543,11 +501,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 4; i++)
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode42(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode42(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -555,11 +512,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 3; i++)
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode43(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode43(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -567,11 +523,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 2; i++)
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode44(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode44(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 4; i++)
 			out[outf + 0] = (out[outf + 0] << 5) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 4) + (in[inf + 4] >>> 1);
@@ -579,11 +534,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 1; i++)
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 5 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode45(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode45(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -591,11 +545,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 28; i++)
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode46(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode46(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -603,11 +556,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 14; i++)
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode47(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode47(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -615,11 +567,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 9; i++)
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode48(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode48(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -627,11 +578,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 7; i++)
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode49(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode49(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -639,11 +589,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 5; i++)
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode50(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode50(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -651,11 +600,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 4; i++)
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode51(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode51(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -663,11 +611,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 3; i++)
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode52(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode52(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -675,11 +622,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 2; i++)
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode53(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode53(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 3; i++)
 			out[outf + 0] = (out[outf + 0] << 7) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 3) + (in[inf + 3] >>> 4);
@@ -687,11 +633,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 1; i++)
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 4 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode54(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode54(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -699,11 +644,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 28; i++)
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode55(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode55(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -711,11 +655,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 14; i++)
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode56(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode56(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -723,11 +666,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 9; i++)
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode57(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode57(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -735,11 +677,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 7; i++)
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode58(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode58(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -747,11 +688,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 5; i++)
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode59(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode59(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -759,11 +699,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 4; i++)
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode60(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode60(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -771,11 +710,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 3; i++)
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode61(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode61(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -783,11 +721,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 2; i++)
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode62(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode62(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		for (int i = 0; i < 2; i++)
 			out[outf + 0] = (out[outf + 0] << 9) + in[inf + i];
 		out[outf + 0] = (out[outf + 0] << 6) + (in[inf + 2] >>> 3);
@@ -795,11 +732,10 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 1; i++)
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 3 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode63(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode63(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
@@ -807,186 +743,169 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		for (int i = 0; i < 28; i++)
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode64(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode64(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf + 1] << 28) >>> 28);
 		for (int i = 0; i < 14; i++)
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode65(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode65(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf + 1] << 28) >>> 28);
 		for (int i = 0; i < 9; i++)
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode66(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode66(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf + 1] << 28) >>> 28);
 		for (int i = 0; i < 7; i++)
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode67(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode67(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf + 1] << 28) >>> 28);
 		for (int i = 0; i < 5; i++)
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode68(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode68(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf + 1] << 28) >>> 28);
 		for (int i = 0; i < 4; i++)
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode69(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode69(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf + 1] << 28) >>> 28);
 		for (int i = 0; i < 3; i++)
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode70(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode70(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf + 1] << 28) >>> 28);
 		for (int i = 0; i < 2; i++)
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode71(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode71(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 14) + in[inf];
 		out[outf + 0] = (out[outf + 0] << 10) + (in[inf + 1] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf + 1] << 28) >>> 28);
 		for (int i = 0; i < 1; i++)
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 2 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode72(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode72(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 28; i++)
 			out[outf + 1] = (out[outf + 1] << 1) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode73(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode73(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 14; i++)
 			out[outf + 1] = (out[outf + 1] << 2) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode74(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode74(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 9; i++)
 			out[outf + 1] = (out[outf + 1] << 3) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode75(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode75(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 7; i++)
 			out[outf + 1] = (out[outf + 1] << 4) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode76(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode76(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 5; i++)
 			out[outf + 1] = (out[outf + 1] << 5) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode77(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode77(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 4; i++)
 			out[outf + 1] = (out[outf + 1] << 7) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode78(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode78(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 3; i++)
 			out[outf + 1] = (out[outf + 1] << 9) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode79(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode79(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 2; i++)
 			out[outf + 1] = (out[outf + 1] << 14) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
-	private void encode80(final int[] in, final int inf, final int code, final int[] out,
-			final int outf) {
+	private void encode80(final int[] in, final int inf, final int code, final int[] out, final int outf) {
 		out[outf + 0] = (out[outf + 0] << 24) + (in[inf] >>> 4);
 		out[outf + 1] = (out[outf + 1] << 4) + ((in[inf] << 28) >>> 28);
 		for (int i = 0; i < 1; i++)
 			out[outf + 1] = (out[outf + 1] << 28) + in[inf + 1 + i];
 		out[outf + 0] = code << 24 | out[outf + 0];
-		
+
 	}
 
 	@Override
@@ -998,8 +917,6 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		headlessUncompress(in, inpos, inlength, out, outpos, outlength);
 	}
 
-	
-	
 	private void decode80(int val, int valn, int[] out, int currentPos) {
 		// number : 1, bitwidth : 28
 		out[currentPos++] = (val << 8) >>> 4 | (valn >>> 28);
@@ -1936,7 +1853,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 4) >>> 18;
 		out[currentPos++] = (valn << 18) >>> 18;
 	}
-	
+
 	private void decode24(int val, int valn, int[] out, int currentPos) {
 		// number : 9, bitwidth : 3
 		out[currentPos++] = (val << 8) >>> 29;
@@ -1953,7 +1870,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 14) >>> 23;
 		out[currentPos++] = (valn << 23) >>> 23;
 	}
-	
+
 	private void decode23(int val, int valn, int[] out, int currentPos) {
 		// number : 9, bitwidth : 3
 		out[currentPos++] = (val << 8) >>> 29;
@@ -2213,7 +2130,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 17) >>> 27;
 		out[currentPos++] = (valn << 22) >>> 27;
 		out[currentPos++] = (valn << 27) >>> 27;
-		
+
 	}
 
 	private void decode12(int val, int valn, int[] out, int currentPos) {
@@ -2240,7 +2157,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 20) >>> 28;
 		out[currentPos++] = (valn << 24) >>> 28;
 		out[currentPos++] = (valn << 28) >>> 28;
-		
+
 	}
 
 	private void decode11(int val, int valn, int[] out, int currentPos) {
@@ -2269,7 +2186,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 23) >>> 29;
 		out[currentPos++] = (valn << 26) >>> 29;
 		out[currentPos++] = (valn << 29) >>> 29;
-		
+
 	}
 
 	private void decode10(int val, int valn, int[] out, int currentPos) {
@@ -2529,7 +2446,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 12) >>> 27;
 		out[currentPos++] = (valn << 17) >>> 27;
 		out[currentPos++] = (valn << 22) >>> 27;
-		out[currentPos++] = (valn << 27) >>> 27;	
+		out[currentPos++] = (valn << 27) >>> 27;
 	}
 
 	private void decode3(int val, int valn, int[] out, int currentPos) {
@@ -2569,7 +2486,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 16) >>> 28;
 		out[currentPos++] = (valn << 20) >>> 28;
 		out[currentPos++] = (valn << 24) >>> 28;
-		out[currentPos++] = (valn << 28) >>> 28;		
+		out[currentPos++] = (valn << 28) >>> 28;
 	}
 
 	private void decode2(int val, int valn, int[] out, int currentPos) {
@@ -2611,7 +2528,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 20) >>> 29;
 		out[currentPos++] = (valn << 23) >>> 29;
 		out[currentPos++] = (valn << 26) >>> 29;
-		out[currentPos++] = (valn << 29) >>> 29;	
+		out[currentPos++] = (valn << 29) >>> 29;
 	}
 
 	private void decode1(int val, int valn, int[] out, int currentPos) {
@@ -2658,7 +2575,7 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 24) >>> 30;
 		out[currentPos++] = (valn << 26) >>> 30;
 		out[currentPos++] = (valn << 28) >>> 30;
-		out[currentPos++] = (valn << 30) >>> 30;		
+		out[currentPos++] = (valn << 30) >>> 30;
 	}
 
 	private void decode0(int val, int valn, int[] out, int currentPos) {
@@ -2722,7 +2639,6 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		out[currentPos++] = (valn << 31) >>> 31;
 	}
 
-
 	private final static int bitLength[] = { 1, 2, 3, 4, 5, 7, 9, 14, 28 };
 
 	private final static int codeNum[] = { 28, 14, 9, 7, 5, 4, 3, 2, 1 };
@@ -2741,31 +2657,45 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 		final int finalin = currentPos + inlength;
 		while (currentPos < finalin - 28 * 2) {
 			int nextCurrentPos = currentPos;
-					mainloop1: for (selector1=0; selector1 <= 8; selector1++) {
+			for (selector1 = 0; selector1 <= 8; selector1++) {
 				int compressedNum = codeNum[selector1];
-				//if (finalin <= nextCurrentPos + compressedNum - 1)
-				//	compressedNum = finalin - nextCurrentPos;
+				// if (finalin <= nextCurrentPos + compressedNum - 1)
+				// compressedNum = finalin - nextCurrentPos;
 				int b = bitLength[selector1];
 				int max = 1 << b;
 				int i = 0;
+				int count = 0; // Counter for not use label
 				for (; i < compressedNum; i++) {
-					if (Util.smallerorequalthan(max, in[nextCurrentPos + i]))
-						continue mainloop1;
+					if (Util.smallerorequalthan(max, in[nextCurrentPos + i])) {
+						count++;
+						break;
+					}
+
+				}
+
+				if (count == 1) {
+					continue;
 				}
 				nextCurrentPos += compressedNum;
 				break;
 			}
-			mainloop2: for (selector2 = 0; selector2 <= 8; selector2++) {
+			for (selector2 = 0; selector2 <= 8; selector2++) {
 				int compressedNum = codeNum[selector2];
-				//if (finalin <= nextCurrentPos + compressedNum - 1)
-				//	compressedNum = finalin - nextCurrentPos;
+				// if (finalin <= nextCurrentPos + compressedNum - 1)
+				// compressedNum = finalin - nextCurrentPos;
 				int b = bitLength[selector2];
 				int max = 1 << b;
 				int i = 0;
+				int count = 0;
 				for (; i < compressedNum; i++) {
-					if (Util.smallerorequalthan(max, in[nextCurrentPos + i]))
-						continue mainloop2;
+					if (Util.smallerorequalthan(max, in[nextCurrentPos + i])) {
+						count++;
+						break;
+					}
+
 				}
+				if (count == 1)
+					continue; // continue statement (it's for do not use label)
 				nextCurrentPos += compressedNum;
 				break;
 			}
@@ -3023,8 +2953,9 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			currentPos = nextCurrentPos;
 		}
 
-		outer: while (currentPos < finalin) {
-			mainloop: for (int selector = 0; selector < 8; selector++) {
+		 while (currentPos < finalin) {
+			int count1=0;
+			for (int selector = 0; selector < 8; selector++) {
 				int res = 0;
 				int compressedNum = codeNum[selector];
 				if (finalin <= currentPos + compressedNum - 1)
@@ -3032,11 +2963,18 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 				int b = bitLength[selector];
 				int max = 1 << b;
 				int i = 0;
+				int count = 0;
 				for (; i < compressedNum; i++) {
-					if (Util.smallerorequalthan(max, in[currentPos + i]))
-						continue mainloop;
+					if (Util.smallerorequalthan(max, in[currentPos + i])) {
+						count++;
+						break;
+					}
+
 					res = (res << b) + in[currentPos + i];
+
 				}
+				if(count==1)
+					continue;
 				if (compressedNum != codeNum[selector]) {
 					res <<= (codeNum[selector] - compressedNum) * b;
 				}
@@ -3044,7 +2982,12 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 				out[tmpoutpos++] = res;
 
 				currentPos += compressedNum;
-				continue outer;
+				
+				count1++;
+				break;
+			}
+			if(count1==1){
+				continue;
 			}
 			final int selector = 8;
 			out[tmpoutpos++] = in[currentPos++] | (selector << 28);
@@ -3066,408 +3009,408 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 			switch (header) {
 			case 0: {
 				decode0(val, valn, out, currentPos);
-				currentPos+=56;
+				currentPos += 56;
 				break;
 			}
-			case 1: { 
+			case 1: {
 				decode1(val, valn, out, currentPos);
-				currentPos+=42;
+				currentPos += 42;
 				break;
 			}
 			case 2: {
 				decode2(val, valn, out, currentPos);
-				currentPos+=37;
+				currentPos += 37;
 				break;
 			}
 			case 3: {
 				decode3(val, valn, out, currentPos);
-				currentPos+=35;		
+				currentPos += 35;
 				break;
 			}
 			case 4: {
 				decode4(val, valn, out, currentPos);
-				currentPos+=33;
+				currentPos += 33;
 				break;
 			}
 			case 5: {
 				decode5(val, valn, out, currentPos);
-				currentPos+=32;
+				currentPos += 32;
 				break;
 			}
 			case 6: {
 				decode6(val, valn, out, currentPos);
-				currentPos+=31;
+				currentPos += 31;
 				break;
 			}
 			case 7: {
 				decode7(val, valn, out, currentPos);
-				currentPos+=30;
+				currentPos += 30;
 				break;
 			}
 			case 8: {
 				decode8(val, valn, out, currentPos);
-				currentPos+=29;
+				currentPos += 29;
 				break;
 			}
 			case 9: {
 				decode9(val, valn, out, currentPos);
-				currentPos+=42;	
+				currentPos += 42;
 				break;
 			}
 			case 10: {
 				decode10(val, valn, out, currentPos);
-				currentPos+=28;	
+				currentPos += 28;
 				break;
 			}
-			case 11: { 
+			case 11: {
 				decode11(val, valn, out, currentPos);
-				currentPos+=23;
+				currentPos += 23;
 				break;
 			}
 			case 12: {
 				decode12(val, valn, out, currentPos);
-				currentPos+=21;
+				currentPos += 21;
 				break;
 			}
 			case 13: {
 				decode13(val, valn, out, currentPos);
-				currentPos+=19;
+				currentPos += 19;
 				break;
 			}
 			case 14: {
 				decode14(val, valn, out, currentPos);
-				currentPos+=18;
+				currentPos += 18;
 				break;
 			}
 			case 15: {
 				decode15(val, valn, out, currentPos);
-				currentPos+=17;
+				currentPos += 17;
 				break;
 			}
 			case 16: {
 				decode16(val, valn, out, currentPos);
-				currentPos+=16;
+				currentPos += 16;
 				break;
 			}
 			case 17: {
 				decode17(val, valn, out, currentPos);
-				currentPos+=15;
+				currentPos += 15;
 				break;
 			}
 			case 18: {
 				decode18(val, valn, out, currentPos);
-				currentPos+=37;
+				currentPos += 37;
 				break;
 			}
 			case 19: {
 				decode19(val, valn, out, currentPos);
-				currentPos+=23;
+				currentPos += 23;
 				break;
 			}
 			case 20: {
 				decode20(val, valn, out, currentPos);
-				currentPos+=18;
+				currentPos += 18;
 				break;
 			}
 			case 21: {
 				decode21(val, valn, out, currentPos);
-				currentPos+=16;
+				currentPos += 16;
 				break;
 			}
-			case 22: { 
+			case 22: {
 				decode22(val, valn, out, currentPos);
-				currentPos+=14;
+				currentPos += 14;
 				break;
 			}
 			case 23: {
 				decode23(val, valn, out, currentPos);
-				currentPos+=13;
+				currentPos += 13;
 				break;
 			}
 			case 24: {
 				decode24(val, valn, out, currentPos);
-				currentPos+=12;
+				currentPos += 12;
 				break;
 			}
 			case 25: {
 				decode25(val, valn, out, currentPos);
-				currentPos+=11;
+				currentPos += 11;
 				break;
 			}
 			case 26: {
 				decode26(val, valn, out, currentPos);
-				currentPos+=10;
+				currentPos += 10;
 				break;
 			}
 			case 27: {
 				decode27(val, valn, out, currentPos);
-				currentPos+=35;
+				currentPos += 35;
 				break;
 			}
 			case 28: {
 				decode28(val, valn, out, currentPos);
-				currentPos+=21;
+				currentPos += 21;
 				break;
 			}
-			case 29: { 
+			case 29: {
 				decode29(val, valn, out, currentPos);
-				currentPos+=16;
+				currentPos += 16;
 				break;
 			}
 
 			case 30: {
 				decode30(val, valn, out, currentPos);
-				currentPos+=14;
+				currentPos += 14;
 				break;
 			}
-			case 31: { 
+			case 31: {
 				decode31(val, valn, out, currentPos);
-				currentPos+=12;
+				currentPos += 12;
 				break;
 			}
 			case 32: {
 				decode32(val, valn, out, currentPos);
-				currentPos+=11;
+				currentPos += 11;
 				break;
 			}
 			case 33: {
 				decode33(val, valn, out, currentPos);
-				currentPos+=10;
+				currentPos += 10;
 				break;
 			}
 			case 34: {
 				decode34(val, valn, out, currentPos);
-				currentPos+=9;
+				currentPos += 9;
 				break;
 			}
 			case 35: {
 				decode35(val, valn, out, currentPos);
-				currentPos+=8;
+				currentPos += 8;
 				break;
 			}
 			case 36: {
 				decode36(val, valn, out, currentPos);
-				currentPos+=33;
+				currentPos += 33;
 				break;
 			}
 			case 37: {
 				decode37(val, valn, out, currentPos);
-				currentPos+=19;
+				currentPos += 19;
 				break;
 			}
 			case 38: {
 				decode38(val, valn, out, currentPos);
-				currentPos+=14;
+				currentPos += 14;
 				break;
 			}
 			case 39: {
 				decode39(val, valn, out, currentPos);
-				currentPos+=12;
+				currentPos += 12;
 				break;
 			}
 			case 40: {
 				decode40(val, valn, out, currentPos);
-				currentPos+=10;
+				currentPos += 10;
 				break;
 			}
 			case 41: {
 				decode41(val, valn, out, currentPos);
-				currentPos+=9;
+				currentPos += 9;
 				break;
 			}
-			case 42: { 
+			case 42: {
 				decode42(val, valn, out, currentPos);
-				currentPos+=8;
+				currentPos += 8;
 				break;
 			}
-			case 43: { 
+			case 43: {
 				decode43(val, valn, out, currentPos);
-				currentPos+=7;
+				currentPos += 7;
 				break;
 			}
 			case 44: {
 				decode44(val, valn, out, currentPos);
-				currentPos+=6;
+				currentPos += 6;
 				break;
 			}
 			case 45: {
 				decode45(val, valn, out, currentPos);
-				currentPos+=32;
+				currentPos += 32;
 				break;
 			}
 			case 46: {
 				decode46(val, valn, out, currentPos);
-				currentPos+=18;
+				currentPos += 18;
 				break;
 			}
-			case 47: { 
+			case 47: {
 				decode47(val, valn, out, currentPos);
-				currentPos+=13;
+				currentPos += 13;
 				break;
 			}
 			case 48: {
 				decode48(val, valn, out, currentPos);
-				currentPos+=11;
+				currentPos += 11;
 				break;
 			}
 			case 49: {
 				decode49(val, valn, out, currentPos);
-				currentPos+=9;
+				currentPos += 9;
 				break;
 			}
 			case 50: {
 				decode50(val, valn, out, currentPos);
-				currentPos+=8;
+				currentPos += 8;
 				break;
 			}
 			case 51: {
 				decode51(val, valn, out, currentPos);
-				currentPos+=7;
+				currentPos += 7;
 				break;
 			}
-			case 52: { 
+			case 52: {
 				decode52(val, valn, out, currentPos);
-				currentPos+=6;
+				currentPos += 6;
 				break;
 			}
 			case 53: {
 				decode53(val, valn, out, currentPos);
-				currentPos+=5;
+				currentPos += 5;
 				break;
 			}
 			case 54: {
 				decode54(val, valn, out, currentPos);
-				currentPos+=31;
+				currentPos += 31;
 				break;
 			}
 			case 55: {
 				decode55(val, valn, out, currentPos);
-				currentPos+=17;
+				currentPos += 17;
 				break;
 			}
 			case 56: {
 				decode56(val, valn, out, currentPos);
-				currentPos+=12;
+				currentPos += 12;
 				break;
 			}
 			case 57: {
 				decode57(val, valn, out, currentPos);
-				currentPos+=10;
+				currentPos += 10;
 				break;
 			}
-			case 58: { 
+			case 58: {
 				decode58(val, valn, out, currentPos);
-				currentPos+=8;
+				currentPos += 8;
 				break;
 			}
 			case 59: {
 				decode59(val, valn, out, currentPos);
-				currentPos+=7;
+				currentPos += 7;
 				break;
 			}
 			case 60: {
 				decode60(val, valn, out, currentPos);
-				currentPos+=6;
+				currentPos += 6;
 				break;
 			}
-			case 61: { 
+			case 61: {
 				decode61(val, valn, out, currentPos);
-				currentPos+=5;
+				currentPos += 5;
 				break;
 			}
 			case 62: {
 				decode62(val, valn, out, currentPos);
-				currentPos+=4;
+				currentPos += 4;
 				break;
 			}
 			case 63: {
 				decode63(val, valn, out, currentPos);
-				currentPos+=30;
+				currentPos += 30;
 				break;
 			}
 			case 64: {
 				decode64(val, valn, out, currentPos);
-				currentPos+=16;
+				currentPos += 16;
 				break;
 			}
-			case 65: { 
+			case 65: {
 				decode65(val, valn, out, currentPos);
-				currentPos+=11;
+				currentPos += 11;
 				break;
 			}
-			case 66: { 
+			case 66: {
 				decode66(val, valn, out, currentPos);
-				currentPos+=9;
+				currentPos += 9;
 				break;
 			}
 			case 67: {
 				decode67(val, valn, out, currentPos);
-				currentPos+=7;
+				currentPos += 7;
 				break;
 			}
-			case 68: { 
+			case 68: {
 				decode68(val, valn, out, currentPos);
-				currentPos+=6;
+				currentPos += 6;
 				break;
 			}
-			case 69: { 
+			case 69: {
 				decode69(val, valn, out, currentPos);
-				currentPos+=5;
+				currentPos += 5;
 				break;
 			}
 			case 70: {
 				decode70(val, valn, out, currentPos);
-				currentPos+=4;
+				currentPos += 4;
 				break;
 			}
 			case 71: {
 				decode71(val, valn, out, currentPos);
-				currentPos+=3;
+				currentPos += 3;
 				break;
 			}
-			case 72: { 
+			case 72: {
 				decode72(val, valn, out, currentPos);
-				currentPos+=29;
+				currentPos += 29;
 				break;
 			}
 			case 73: {
 				decode73(val, valn, out, currentPos);
-				currentPos+=15;
+				currentPos += 15;
 				break;
 			}
 			case 74: {
 				decode74(val, valn, out, currentPos);
-				currentPos+=10;
+				currentPos += 10;
 				break;
 			}
 			case 75: {
 				decode75(val, valn, out, currentPos);
-				currentPos+=8;
+				currentPos += 8;
 				break;
 			}
 			case 76: {
 				decode76(val, valn, out, currentPos);
-				currentPos+=6;
+				currentPos += 6;
 				break;
 			}
 			case 77: {
 				decode77(val, valn, out, currentPos);
-				currentPos+=5;
+				currentPos += 5;
 				break;
 			}
 			case 78: {
 				decode78(val, valn, out, currentPos);
-				currentPos+=4;
+				currentPos += 4;
 				break;
 			}
 			case 79: {
 				decode79(val, valn, out, currentPos);
-				currentPos+=3;
+				currentPos += 3;
 				break;
 			}
 			case 80: {
 				decode80(val, valn, out, currentPos);
-				currentPos+=2;
+				currentPos += 2;
 				break;
 			}
 			default:
@@ -3547,6 +3490,6 @@ public final class GroupSimple9 implements IntegerCODEC, SkippableIntegerCODEC {
 
 		outpos.set(finalout);
 		inpos.set(tmpinpos);
-		
+
 	}
 }

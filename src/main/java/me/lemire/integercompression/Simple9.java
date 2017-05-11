@@ -19,37 +19,53 @@ package me.lemire.integercompression;
  */
 public final class Simple9 implements IntegerCODEC, SkippableIntegerCODEC {
 
-
 	@Override
 	public void headlessCompress(int[] in, IntWrapper inpos, int inlength, int out[], IntWrapper outpos) {
 		int tmpoutpos = outpos.get();
 		int currentPos = inpos.get();
+		
 		final int finalin = currentPos + inlength;
-		outer: while (currentPos < finalin - 28) {
-			mainloop: for (int selector = 0; selector < 8; selector++) {
+		while (currentPos < finalin - 28) {
+			int count1 = 0;
+			for (int selector = 0; selector < 8; selector++) {
 
 				int res = 0;
 				int compressedNum = codeNum[selector];
 				int b = bitLength[selector];
 				int max = 1 << b;
 				int i = 0;
+				int count = 0;
 				for (; i < compressedNum; i++) {
-					if (max <= in[currentPos + i])
-						continue mainloop;
+					if (max <= in[currentPos + i]) {
+
+						count++;
+						break;
+					}
+
 					res = (res << b) + in[currentPos + i];
 				}
+
+				if (count == 1)
+					continue;
 				res |= selector << 28;
 				out[tmpoutpos++] = res;
 				currentPos += compressedNum;
-				continue outer;
+				count1++;
+				break;
 			}
+
+			if (count1 == 1)
+				continue;
 			final int selector = 8;
 			if (in[currentPos] >= 1 << bitLength[selector])
 				throw new RuntimeException("Too big a number");
 			out[tmpoutpos++] = in[currentPos++] | (selector << 28);
 		}
-		outer: while (currentPos < finalin) {
-			mainloop: for (int selector = 0; selector < 8; selector++) {
+		
+		
+		while (currentPos < finalin) {
+			int count2=0;
+			 for (int selector = 0; selector < 8; selector++) {
 				int res = 0;
 				int compressedNum = codeNum[selector];
 				if (finalin <= currentPos + compressedNum - 1)
@@ -57,10 +73,18 @@ public final class Simple9 implements IntegerCODEC, SkippableIntegerCODEC {
 				int b = bitLength[selector];
 				int max = 1 << b;
 				int i = 0;
+				int count = 0;
 				for (; i < compressedNum; i++) {
-					if (max <= in[currentPos + i])
-						continue mainloop;
+					if (max <= in[currentPos + i]) {
+
+						count++;
+						break;
+					}
+
 					res = (res << b) + in[currentPos + i];
+				}
+				if (count == 1) {
+					continue;
 				}
 
 				if (compressedNum != codeNum[selector])
@@ -68,8 +92,12 @@ public final class Simple9 implements IntegerCODEC, SkippableIntegerCODEC {
 				res |= selector << 28;
 				out[tmpoutpos++] = res;
 				currentPos += compressedNum;
-				continue outer;
+				count2++;
+				break;
 			}
+
+			if (count2 == 1)
+				continue;
 			final int selector = 8;
 			if (in[currentPos] >= 1 << bitLength[selector])
 				throw new RuntimeException("Too big a number");
